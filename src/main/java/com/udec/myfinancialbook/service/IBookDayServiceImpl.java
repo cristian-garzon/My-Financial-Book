@@ -26,9 +26,33 @@ public class IBookDayServiceImpl implements IBookDayService{
     }
 
     @Override
+    public Optional<BookDay> find(int id) {
+        return bookDayRepo.findById(id);
+    }
+
+    @Override
     public void addJournal(int code, double credit, double debit, String description, int enterprise_id) {
         BookDay bookDay = new BookDay(code,debit,credit,description, entrerpriseService.find(enterprise_id).get(), pucContableService.find(code).get());
         bookDayRepo.save(bookDay);
+    }
+
+    @Override
+    public boolean update(double credit, double debit, int id) {
+        if(bookDayRepo.existsById(id)){
+            BookDay bookDay = new BookDay(id,find(id).get().getCode(),debit,credit, find(id).get().getDescription(),find(id).get().getDate(),find(id).get().getBusiness(),pucContableService.find(find(id).get().getCode()).get());
+            bookDayRepo.save(bookDay);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean delete(int id) {
+        if(bookDayRepo.existsById(id)){
+            bookDayRepo.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
 

@@ -97,6 +97,15 @@ public class Entrerprise implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
+    public Entrerprise(int id, long nit, String name, String description, String direction, String phoneNumber) {
+        this.id = id;
+        this.nit = nit;
+        this.name = name;
+        this.description = description;
+        this.direction = direction;
+        this.phoneNumber = phoneNumber;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }

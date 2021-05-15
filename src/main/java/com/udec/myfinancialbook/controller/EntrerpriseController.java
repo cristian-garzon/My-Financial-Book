@@ -32,4 +32,9 @@ public class EntrerpriseController {
     public void add(@RequestParam("nit") long nit , @RequestParam("name") String name,@RequestParam("description") String description,@RequestParam("direction") String direction, @RequestParam("phoneNumber") String phoneNumber){
         entrerpriseService.addEntrerprise(nit, name, direction,description, phoneNumber);
     }
+    // update enterprise
+    @PostMapping("/update")
+    public boolean update(@RequestParam("id") int id, @RequestParam("name") String name, @RequestParam("direction") String direction, @RequestParam("description") String description, @RequestParam("phoneNumber") String phoneNumber){
+        return entrerpriseService.update(id, direction, name, description, phoneNumber);
+    }
 }

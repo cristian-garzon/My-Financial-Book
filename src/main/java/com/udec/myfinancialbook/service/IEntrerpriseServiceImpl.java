@@ -32,4 +32,14 @@ public class IEntrerpriseServiceImpl implements  IEntrerpriseService{
         Entrerprise entrerprise = new Entrerprise(nit,name, description,direction,phoneNumber);
         enterpriseRepo.save(entrerprise);
     }
+
+    @Override
+    public boolean update(int id, String direction, String name, String description, String phonenumber) {
+        if(enterpriseRepo.existsById(id)) {
+            Entrerprise entrerprise = new Entrerprise(id, find(id).get().getNit(), name, description, direction, phonenumber);
+            enterpriseRepo.save(entrerprise);
+            return true;
+        }
+        return false;
+    }
 }

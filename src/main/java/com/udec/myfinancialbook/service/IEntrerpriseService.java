@@ -9,4 +9,5 @@ public interface IEntrerpriseService {
     public List<Entrerprise> list();
     public Optional<Entrerprise> find(int id);
     public void addEntrerprise(long nit, String name, String direction, String description, String phoneNumber);
+    public boolean update(int id, String directión, String name,String descriptión,String phonenumber);
 }

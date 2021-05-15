@@ -27,6 +27,16 @@ public class BookDayController {
     @PostMapping("/add")
     public void add(@RequestParam("code") int code, @RequestParam("credit") double credit, @RequestParam("debit") double debit,@RequestParam ("description") String description, @RequestParam("enterprise_id") int enterprise_id){
          bookDayService.addJournal(code,credit,debit,description,enterprise_id);
+    }
 
+    //update journal
+    @PostMapping("/update")
+    public boolean update(@RequestParam("credit") double credit, @RequestParam("debit") double debit, @RequestParam("id") int id){
+        return bookDayService.update(credit, debit, id);
+    }
+
+    @PostMapping("/delete")
+    public boolean delete(@RequestParam("id") int id){
+        return bookDayService.delete(id);
     }
 }

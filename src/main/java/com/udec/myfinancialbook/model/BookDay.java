@@ -104,6 +104,17 @@ public class BookDay implements Serializable {
         this.puc_contable = puc_contable;
     }
 
+    public BookDay(int id, int code, double debit, double credit, String description, Date date, Entrerprise enterprise, PucContable puc_contable) {
+        this.id = id;
+        this.code = code;
+        this.debit = debit;
+        this.credit = credit;
+        this.description = description;
+        this.date = date;
+        this.enterprise = enterprise;
+        this.puc_contable = puc_contable;
+    }
+
     public BookDay(){
 
     }
