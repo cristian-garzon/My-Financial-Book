@@ -11,10 +11,10 @@ public class Entrerprise implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name = "NIT")
-    private Long nit;
+    private long nit;
 
     private String name;
 
@@ -61,32 +61,46 @@ public class Entrerprise implements Serializable {
         this.listBookday.add(journal);
     }
 
-
-    /*
-    public void filterValues(){
-        double sumDebit = 0, sumCredit = 0;
-        for(int i = 0; i < listJournal.size(); i++){
-            for(int j = 0; j < listJournal.size(); j++){
-                if( listJournal.get(i).getCode().equals(listJournal.get(j).getCode()) &&
-                        listJournal.get(i).getConcept().equals(listJournal.get(j).getConcept())){
-                    if(listJournal.get(j).isDebit() && !(listJournal.get(j).isCredit())){
-                        listLegder.add(new Ledger());
-                        sumDebit += listJournal.get(j).getBalance();
-                    }else if(listJournal.get(j).isCredit() && !(listJournal.get(j).isDebit())){
-                        listLegder.add(new Ledger());
-                        sumCredit += listJournal.get(j).getBalance();
-                    }
-                }
-            }
-        }
+    public void setId(int id) {
+        this.id = id;
     }
-     */
+
+    public void setNit(long nit) {
+        this.nit = nit;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public long getNit() {
+        return nit;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Entrerprise(long nit, String name, String description, String direction, String phoneNumber) {
+        this.nit = nit;
+        this.name = name;
+        this.description = description;
+        this.direction = direction;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     private static final long serialVersionUID = 1L;
 }
 
-   /*
-            if(listJournal.get(i).getCode().equals(listJournal.get(i+1).getCode()) &&
-                    listJournal.get(i).getConcept().equals(listJournal.get(i+1).getConcept())){
-                this.listLegder.add(Arrays.asList(new L));
-            }
-             */

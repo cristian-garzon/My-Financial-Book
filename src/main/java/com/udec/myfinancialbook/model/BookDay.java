@@ -1,5 +1,7 @@
 package com.udec.myfinancialbook.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -11,9 +13,9 @@ public class BookDay implements Serializable {
     //atributes
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
-    private Long code;
+    private int code;
     private double debit;
     private double credit;
     private String description;
@@ -33,16 +35,25 @@ public class BookDay implements Serializable {
         this.date = new Date();
     }
 
-    public Long getCode() {
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getCode() {
         return code;
     }
 
-    public void setCode(Long code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
 
-    public double isDebit() {
+    public double getDebit() {
         return debit;
     }
 
@@ -50,7 +61,7 @@ public class BookDay implements Serializable {
         this.debit = debit;
     }
 
-    public double isCredit() {
+    public double getCredit() {
         return credit;
     }
 
@@ -58,11 +69,11 @@ public class BookDay implements Serializable {
         this.credit = credit;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -74,6 +85,7 @@ public class BookDay implements Serializable {
         this.date = date;
     }
 
+    @JsonIgnore
     public Entrerprise getBusiness() {
         return enterprise;
     }
@@ -82,6 +94,19 @@ public class BookDay implements Serializable {
         this.enterprise = business;
     }
 
+    public BookDay(int code, double debit, double credit, String description, Entrerprise enterprise, PucContable puc_contable) {
+        this.code = code;
+        this.debit = debit;
+        this.credit = credit;
+        this.description = description;
+        this.date = new Date();
+        this.enterprise = enterprise;
+        this.puc_contable = puc_contable;
+    }
+
+    public BookDay(){
+
+    }
     private static final long serialVersionUID = 1L;
 }
 
