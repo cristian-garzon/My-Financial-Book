@@ -6,6 +6,7 @@ import com.udec.myfinancialbook.repository.IBookDayRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +22,13 @@ public class IBookDayServiceImpl implements IBookDayService{
     @Autowired
     private IPucContableService pucContableService;
     @Override
-    public List<BookDay> list() {
-        return bookDayRepo.findAll();
+    public List<BookDay> list(int enterprise_id) {
+        List<BookDay> bookDays = bookDayRepo.findAll();
+        ArrayList<BookDay> listBook = new ArrayList<>();
+        for (int i = 0; i < bookDays.size(); i++){
+            if(bookDays.get(i).getBusiness().getId() == enterprise_id) listBook.add(bookDays.get(i));
+        }
+        return listBook;
     }
 
     @Override

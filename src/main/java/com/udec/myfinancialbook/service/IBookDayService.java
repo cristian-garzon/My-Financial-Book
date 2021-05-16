@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IBookDayService {
-    public List<BookDay> list();
+    public List<BookDay> list(int enterprise_id);
     public Optional<BookDay> find(int id);
     public void  addJournal(int code, double credit, double debit, String description, int enterprise_id);
     public boolean update(double credit, double debit, int id);

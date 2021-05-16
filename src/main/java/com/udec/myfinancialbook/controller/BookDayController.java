@@ -20,8 +20,8 @@ public class BookDayController {
 
     //list
     @PostMapping("/list")
-    public List<BookDay> list(){
-        return bookDayService.list();
+    public List<BookDay> list(@RequestParam("enterprise_id") int enterprise_id){
+        return bookDayService.list(enterprise_id);
     }
     //add Journal
     @PostMapping("/add")
