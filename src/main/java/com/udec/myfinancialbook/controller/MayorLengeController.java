@@ -5,6 +5,7 @@ import com.udec.myfinancialbook.service.IMayorLedgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class MayorLengeController {
 
     //list
     @PostMapping("/list")
-    public List<mayorLedge> list(){
-        return mayorLedgeService.list();
+    public List<mayorLedge> list(@RequestParam("id_enterprise") int id_enterprise){
+        return mayorLedgeService.list(id_enterprise);
     }
 }
