@@ -6,7 +6,10 @@ import com.udec.myfinancialbook.repository.IBookDayRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +24,8 @@ public class IBookDayServiceImpl implements IBookDayService{
 
     @Autowired
     private IPucContableService pucContableService;
+
+
     @Override
     public List<BookDay> list(int enterprise_id) {
         List<BookDay> bookDays = bookDayRepo.findAll();
@@ -59,6 +64,29 @@ public class IBookDayServiceImpl implements IBookDayService{
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean doubleCounting(int enterprise_id, String dateS) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = format.parse(dateS);
+            dateS=format.format(date);
+        }catch (ParseException e){
+            System.out.println("Error to parse Date");
+        }
+        List<BookDay> bookDays = list(enterprise_id);
+        int credit = 0;
+        int debit = 0;
+        for (int i=0; i < bookDays.size(); i++){
+            if (bookDays.get(i).getDate().toString().equals(dateS)){
+               credit += bookDays.get(i).getCredit();
+               debit += bookDays.get(i).getDebit();
+            }
+        }
+        return credit == debit && credit+debit != 0;
+
     }
 
 

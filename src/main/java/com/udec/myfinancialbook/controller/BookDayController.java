@@ -5,8 +5,11 @@ import com.udec.myfinancialbook.model.Entrerprise;
 import com.udec.myfinancialbook.model.PucContable;
 import com.udec.myfinancialbook.service.IBookDayService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,8 +38,16 @@ public class BookDayController {
         return bookDayService.update(credit, debit, id);
     }
 
+    //delete user
     @PostMapping("/delete")
     public boolean delete(@RequestParam("id") int id){
         return bookDayService.delete(id);
+    }
+
+    //boolean for know if the Journal have double-counting
+    //the date must be in the next format= yyyy-MM-dd
+    @PostMapping("/doubleCounting")
+    public boolean doubleCounting(@RequestParam("enterprise_id") int enterprise_id ,@RequestParam("date")  String date){
+        return bookDayService.doubleCounting(enterprise_id,date);
     }
 }
