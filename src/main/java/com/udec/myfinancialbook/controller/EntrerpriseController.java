@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("/enterprise")
 public class EntrerpriseController {
 
@@ -16,25 +17,26 @@ public class EntrerpriseController {
     private IEntrerpriseServiceImpl entrerpriseService;
 
     //list enterprises
-    @PostMapping("list")
+    @GetMapping("list")
     public List<Entrerprise> list(){
         return entrerpriseService.list();
     }
 
     //find enterprises
-    @PostMapping("/find")
+    @GetMapping("/find")
     public Optional<Entrerprise> find(@RequestParam("id") int id){
         return entrerpriseService.find(id);
     }
 
     //add enterprise
-    @PostMapping("/add")
+    @GetMapping("/add")
     public void add(@RequestParam("nit") long nit , @RequestParam("name") String name,@RequestParam("description") String description,@RequestParam("direction") String direction, @RequestParam("phoneNumber") String phoneNumber){
         entrerpriseService.addEntrerprise(nit, name, direction,description, phoneNumber);
     }
     // update enterprise
-    @PostMapping("/update")
+    @GetMapping("/update")
     public boolean update(@RequestParam("id") int id, @RequestParam("name") String name, @RequestParam("direction") String direction, @RequestParam("description") String description, @RequestParam("phoneNumber") String phoneNumber){
         return entrerpriseService.update(id, direction, name, description, phoneNumber);
     }
+
 }

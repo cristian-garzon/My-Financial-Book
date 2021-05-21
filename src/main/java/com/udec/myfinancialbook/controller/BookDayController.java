@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins="https://localhost:4200")
 @RequestMapping("/BookDay")
 public class BookDayController {
 
@@ -22,31 +23,31 @@ public class BookDayController {
     private IBookDayService bookDayService;
 
     //list
-    @PostMapping("/list")
+    @GetMapping("/list")
     public List<BookDay> list(@RequestParam("enterprise_id") int enterprise_id){
         return bookDayService.list(enterprise_id);
     }
     //add Journal
-    @PostMapping("/add")
+    @GetMapping("/add")
     public void add(@RequestParam("code") int code, @RequestParam("credit") double credit, @RequestParam("debit") double debit,@RequestParam ("description") String description, @RequestParam("enterprise_id") int enterprise_id){
          bookDayService.addJournal(code,credit,debit,description,enterprise_id);
     }
 
     //update journal
-    @PostMapping("/update")
+    @GetMapping("/update")
     public boolean update(@RequestParam("credit") double credit, @RequestParam("debit") double debit, @RequestParam("id") int id){
         return bookDayService.update(credit, debit, id);
     }
 
     //delete user
-    @PostMapping("/delete")
+    @GetMapping("/delete")
     public boolean delete(@RequestParam("id") int id){
         return bookDayService.delete(id);
     }
 
     //boolean for know if the Journal have double-counting
     //the date must be in the next format= yyyy-MM-dd
-    @PostMapping("/doubleCounting")
+    @GetMapping("/doubleCounting")
     public boolean doubleCounting(@RequestParam("enterprise_id") int enterprise_id ,@RequestParam("date")  String date){
         return bookDayService.doubleCounting(enterprise_id,date);
     }
