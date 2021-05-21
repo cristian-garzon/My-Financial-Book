@@ -21,6 +21,7 @@ public class IMayorLedgeServiceimpl implements IMayorLedgeService{
     //si es true significa que la naturaleza es debit
     @Override
     public List<mayorLedge> list(int id_enterprise) {
+        double total;
         List<BookDay> listBookDay = bookDayService.list(id_enterprise);
         ArrayList<mayorLedge> mayorLedges = new ArrayList<>();
         boolean balance;
@@ -31,7 +32,9 @@ public class IMayorLedgeServiceimpl implements IMayorLedgeService{
             } else {
                 if(listBookDay.get(i).getCredit() >= listBookDay.get(i).getDebit()) balance = false;
                 else balance = true;
-                mayorLedges.add(new mayorLedge(code,pucContableService.find(code).get().getConcepto(), listBookDay.get(i).getCredit()-listBookDay.get(i).getDebit(), balance));
+                if(listBookDay.get(i).getCredit() >= listBookDay.get(i).getDebit()) total=listBookDay.get(i).getCredit()-listBookDay.get(i).getDebit();
+                else total=listBookDay.get(i).getDebit()-listBookDay.get(i).getCredit();
+                mayorLedges.add(new mayorLedge(code,pucContableService.find(code).get().getConcepto(), total, balance));
             }
 
         }
