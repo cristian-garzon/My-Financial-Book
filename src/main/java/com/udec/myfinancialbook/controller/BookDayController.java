@@ -1,17 +1,11 @@
 package com.udec.myfinancialbook.controller;
 
 import com.udec.myfinancialbook.model.BookDay;
-import com.udec.myfinancialbook.model.Entrerprise;
-import com.udec.myfinancialbook.model.PucContable;
 import com.udec.myfinancialbook.service.IBookDayService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
 @RestController
