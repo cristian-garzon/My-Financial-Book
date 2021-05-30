@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
 @RequestMapping("/Mayor")
+@CrossOrigin
 public class MayorLengeController {
 
     @Autowired
